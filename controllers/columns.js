@@ -2,6 +2,8 @@ const db = require('./db');
 const config = require('../config');
 
 const colFields = 'id, battery_id, type, NumOfFloorsServed, Status, Information, Notes '
+const eleFields = 'id, Type, Status'
+
 const getSingle = async function (id) {
     const rows = await db.query(
       `SELECT ${colFields}
@@ -18,11 +20,11 @@ const getAll = async function () {
   return rows
 }
 
-const getBatt = async function () {
+const getElevators = async function (id) {
   const rows = await db.query(
-    `SELECT ${colFields}
-    FROM columns 
-    Where battery_id == :id`
+    `SELECT ${eleFields}
+    FROM elevators 
+    Where column_id = ${id}`
   );
   return rows
 }
@@ -30,5 +32,6 @@ const getBatt = async function () {
 module.exports = {
     getSingle, 
     getAll,
+    getElevators,
     
 }

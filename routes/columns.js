@@ -21,5 +21,14 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+router.get('/:id/elevators', async function(req, res, next) {
+  try {
+    res.json(await columns.getElevators(req.params.id, req.query));
+  } catch (err) {
+    console.error(`Error while getting columns `, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;
