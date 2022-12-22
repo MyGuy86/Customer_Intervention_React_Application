@@ -18,8 +18,28 @@ const getAll = async function () {
   return rows
 }
 
+const New = async function (customers) {
+  const result = await db.query(
+    `INSERT INTO customers 
+    (user_id, address_id, CompanyName, FullNameOfCompanyContact, CompanyContactPhone, CompanyContactEMail, FullNameServiceTechAuth, TechAuthPhoneService, TechManagerEmailService, created_at, updated_at) 
+    VALUES 
+    (${customers.user_id}, ${customers.address_id}, "${customers.CompanyName}", "${customers.FullNameOfCompanyContact}", "${customers.CompanyContactPhone}", "${customers.CompanyContactEMail}", "${customers.FullNameServiceTechAuth}", "${customers.TechAuthPhoneService}", "${customers.TechManagerEmailService}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
+  );
+
+  let message = 'Error in creating customers';
+
+  if (result.affectedRows) {
+    message = 'customers created successfully';
+  }
+
+  return {message};
+}
+
+
+
 module.exports = {
     getSingle, 
     getAll,
+    New,
     
 }

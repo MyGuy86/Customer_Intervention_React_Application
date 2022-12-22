@@ -21,5 +21,32 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+router.post('/new', async function(req, res, next) {
+  try {
+    res.json(await interventions.New(req.query));
+  } catch (err) {
+    console.error(`Error while posting interventions `, err.message);
+    next(err);
+  }
+});
+
+router.patch('/update/:id', async function(req, res, next) {
+  try {
+    res.json(await interventions.UpdateStatus(req.params.id, req.query, req.params.status));
+  } catch (err) {
+    console.error(`Error while patching interventions `, err.message);
+    next(err);
+  }
+});
+
+router.delete('/delete/:id', async function(req, res, next) {
+  try {
+    res.json(await interventions.Delete(req.params.id, req.query));
+  } catch (err) {
+    console.error(`Error while getting interventions `, err.message);
+    next(err);
+  }
+});
+
 
 module.exports = router;
