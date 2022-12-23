@@ -25,7 +25,7 @@ router.post('/new', async function(req, res, next) {
   try {
     res.json(await customers.New(req.query));
   } catch (err) {
-    console.error(`Error while getting interventions `, err.message);
+    console.error(`Error making customer `, err.message);
     next(err);
   }
 });

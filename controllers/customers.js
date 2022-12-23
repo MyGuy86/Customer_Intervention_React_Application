@@ -25,6 +25,7 @@ const New = async function (customers) {
     VALUES 
     (${customers.user_id}, ${customers.address_id}, "${customers.CompanyName}", "${customers.FullNameOfCompanyContact}", "${customers.CompanyContactPhone}", "${customers.CompanyContactEMail}", "${customers.FullNameServiceTechAuth}", "${customers.TechAuthPhoneService}", "${customers.TechManagerEmailService}", CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
   );
+  
 
   let message = 'Error in creating customers';
 

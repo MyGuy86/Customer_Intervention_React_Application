@@ -1,7 +1,7 @@
 const db = require('./db');
 const config = require('../config');
 
-const eleFields = 'id, Type, Status'
+const eleFields = 'id, column_id, Model, Type, Status, Information, Notes'
 const getSingle = async function (id) {
     const rows = await db.query(
       `SELECT ${eleFields}
